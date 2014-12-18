@@ -3,7 +3,7 @@
     .col-md-12
   .row
     .col-md-3
-      %a.btn.btn-default{role: 'button'} Добавить
+      %a.btn.btn-default{role: 'button', href: "#{new_operation_path}"} Добавить
       %a.btn.btn-default{role: 'button'} Фильтр
     .col-md-5
       .col-md-4 Ост.на начало
@@ -26,12 +26,17 @@
           %th Категория
           %th Субкатегория
           %th Примечание
+          %th
+          %th
         %tbody
-          %tr
-            %td 1
-            %td 10.12.2014
-            %td 2000
-            %td Наличка
-            %td Дорога
-            %td На работу
-            %td
+          - @operations.each do |operation|
+            %tr
+              %td 1
+              %td= operation.date
+              %td= operation.sum
+              %td= operation.source
+              %td= operation.category_id
+              %td= operation.subcategory_id
+              %td= operation.comment
+              %td= link_to 'Редактировать', edit_operation_path(operation)
+              %td= link_to 'Удалить', operation_path(operation), method: :delete
