@@ -1,0 +1,37 @@
+.container
+  .row
+    .col-md-12
+  .row
+    .col-md-3
+      %a.btn.btn-default{role: 'button'} Добавить
+      %a.btn.btn-default{role: 'button'} Фильтр
+    .col-md-5
+      .col-md-4 Ост.на начало
+      .col-md-8
+        %p= "Пл.карта  ______"
+        %p= "Наличка   ______"
+    .col-md-4
+      .col-md-4 Ост.на конец
+      .col-md-8
+        %p= "Пл.карта  ______"
+        %p= "Наличка   ______"
+  .row
+    .col-md-12
+      %table.table.table-bordered
+        %thead
+          %th №
+          %th Дата
+          %th Сумма
+          %th Источник операции
+          %th Категория
+          %th Субкатегория
+          %th Примечание
+        %tbody
+          %tr
+            %td 1
+            %td 10.12.2014
+            %td 2000
+            %td Наличка
+            %td Дорога
+            %td На работу
+            %td
