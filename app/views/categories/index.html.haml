@@ -1,0 +1,23 @@
+- #TODO create helper method to generate table list
+.container
+  .row
+    .col-md-12
+  .row
+    .col-md-3
+      %a.btn.btn-default{role: 'button', href: "#{new_operation_path}"} Добавить
+      %a.btn.btn-default{role: 'button'} Фильтр
+  .row
+    .col-md-12
+      %table.table.table-bordered
+        %thead
+          %th №
+          %th Наименование
+          %th
+          %th
+        %tbody
+          - @categories.each_with_index do |category, index|
+            %tr
+              %td= index.next
+              %td= category.name
+              %td= link_to 'Редактировать', edit_category_path(category)
+              %td= link_to 'Удалить', category_path(category), method: :delete
