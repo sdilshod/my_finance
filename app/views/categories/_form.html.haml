@@ -1,0 +1,10 @@
+.operation_form
+  %div.operation_form_header
+    %h4 Form title
+  %div.operation_form_content
+    = form_for(@category, html: {role: 'form'}) do |f|
+      .form-group
+        = f.label 'Наименование'
+        = f.text_field :name, class: 'form-control'
+      .form-group
+        = f.submit 'Сохранить', role: 'button', class: 'btn btn-default'

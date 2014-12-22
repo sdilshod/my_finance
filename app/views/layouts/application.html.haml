@@ -10,7 +10,14 @@
     .container-fluid
       .row
         .col-md-12
-          = nav_bar :static => :top
+          = nav_bar :static => :top do
+            = menu_group do
+              = menu_item "Operations", operations_path
+              = menu_item "Категории", categories_path
+              = menu_item "Субкатегории", subcategories_path
+
+            = menu_group :pull => :right do
+              = menu_item "Menu"
       .row
         .col-md-12
           = yield 

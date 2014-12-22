@@ -4,8 +4,12 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
+
   resources :operations
 
+  #TODO change(categories and subcategories) with sub-resources
+  resources :categories
+  resources :subcategories
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
