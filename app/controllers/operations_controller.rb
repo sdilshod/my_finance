@@ -31,8 +31,16 @@ class OperationsController < ApplicationController
 
   end
 
+  def destroy
+    @operation = Operation.find params[:id]
+    @operation.destroy
+    redirect_to operations_path
+  end
+
+
 private
 
+  #TODO learn best practice with adding assocations
   def operation_params
     params.require(:operation)
       .permit(:date,

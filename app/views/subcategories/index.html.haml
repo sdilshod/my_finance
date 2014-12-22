@@ -3,7 +3,7 @@
     .col-md-12
   .row
     .col-md-3
-      %a.btn.btn-default{role: 'button', href: "#{new_operation_path}"} Добавить
+      %a.btn.btn-default{role: 'button', href: "#{new_subcategory_path}"} Добавить
       %a.btn.btn-default{role: 'button'} Фильтр
   .row
     .col-md-12
@@ -19,4 +19,4 @@
               %td= index.next
               %td= subcategory.name
               %td= link_to 'Редактировать', edit_subcategory_path(subcategory)
-              %td= link_to 'Удалить', subcategory_path(category), method: :delete
+              %td= link_to 'Удалить', subcategory_path(subcategory), method: :delete

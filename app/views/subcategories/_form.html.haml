@@ -4,6 +4,9 @@
   %div.operation_form_content
     = form_for(@subcategory, html: {role: 'form'}) do |f|
       .form-group
+        = f.label 'Категория'
+        = f.select :category_id, [['Дом',1], ['Дорого',2]], class: 'form-control'
+      .form-group
         = f.label 'Наименование'
         = f.text_field :name, class: 'form-control'
       .form-group
