@@ -39,7 +39,8 @@ class SubcategoriesController < ApplicationController
 
 private
 
+  #TODO learn best practice with adding assocations
   def subcategory_params
-    params.require(:category).permit(:name)
+    params.require(:subcategory).permit(:name, :category_id)
   end
 end
