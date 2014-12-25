@@ -1,13 +1,18 @@
-.operation_form
-  %div.operation_form_header
-    %h4 Form title
-  %div.operation_form_content
-    = form_for(@subcategory, html: {role: 'form'}) do |f|
+.object_form
+  %div.object_form_header
+    %h4= title_of_object_form(@subcategory)
+  %div.object_form_content
+    = form_for(@subcategory, html: {role: 'form', class: 'form-horizontal'}) do |f|
       .form-group
-        = f.label 'Категория'
-        = f.select :category_id, Category.get_select_data, class: 'form-control'
+        .col-sm-3
+          = f.label 'Категория', class: 'control-label'
+        .col-sm-9
+          = f.select :category_id, Category.get_select_data, class: 'form-control'
       .form-group
-        = f.label 'Наименование'
-        = f.text_field :name, class: 'form-control'
+        .col-sm-3
+          = f.label 'Наименование', class: 'control-label'
+        .col-sm-9
+          = f.text_field :name, class: 'form-control'
       .form-group
-        = f.submit 'Сохранить', role: 'button', class: 'btn btn-default'
+        .col-sm-12.text-right
+          = f.submit 'Сохранить', role: 'button', class: 'btn btn-default'

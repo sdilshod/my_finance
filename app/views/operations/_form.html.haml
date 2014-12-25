@@ -1,25 +1,38 @@
-.operation_form
-  %div.operation_form_header
-    %h4 Form title
-  %div.operation_form_content
-    =form_for(@operation, html: {role: 'form'}) do |f|
+.object_form
+  %div.object_form_header
+    %h4= title_of_object_form(@operation)
+  %div.object_form_content
+    =form_for(@operation, html: {role: 'form', class: 'form-horizontal'}) do |f|
       .form-group
-        = f.label 'Дата'
-        = f.date_field :date, class: 'form-control'
+        .col-sm-3
+          = f.label 'Дата', class: 'control-label'
+        .col-sm-9
+          = f.date_field :date, class: 'form-control'
       .form-group
-        = f.label 'Сумма'
-        = f.text_field :sum, class: 'form-control'
+        .col-sm-3
+          = f.label 'Сумма', class: 'control-label'
+        .col-sm-9
+          = f.text_field :sum, class: 'form-control'
       .form-group
-        = f.label 'Источник операции'
-        = f.select :source, [['Наличка',1], ['Пл.карта',2]], class: 'form-control'
+        .col-sm-3
+          = f.label 'Источник', class: 'control-label'
+        .col-sm-9
+          = f.select :source, [['Наличка',1], ['Пл.карта',2]], class: 'form-control'
       .form-group
-        = f.label 'Категория'
-        = f.select :category_id, Category.get_select_data, class: 'form-control'
+        .col-sm-3
+          = f.label 'Категория', class: 'control-label'
+        .col-sm-9
+          = f.select :category_id, Category.get_select_data, class: 'form-control'
       .form-group
-        = f.label 'Субкатегории'
-        = f.select :subcategory_id, Subcategory.get_select_data, class: 'form-control'
+        .col-sm-3
+          = f.label 'Субкатегории', class: 'control-label'
+        .col-sm-9
+          = f.select :subcategory_id, Subcategory.get_select_data, class: 'form-control'
       .form-group
-        = f.label 'Комментарии'
-        = f.text_field :comment, class: 'form-control'
+        .col-sm-3
+          = f.label 'Комментарии', class: 'control-label'
+        .col-sm-9
+          = f.text_area :comment, class: 'form-control'
       .form-group
-        = f.submit 'Сохранить', role: 'button', class: 'btn btn-default'
+        .col-sm-12.text-right
+          = f.submit 'Сохранить', role: 'button', class: 'btn btn-default'

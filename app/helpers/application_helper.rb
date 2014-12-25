@@ -12,4 +12,8 @@ module ApplicationHelper
     end
     nil
   end
+
+  def title_of_object_form(object)
+    object.new_record? ? 'Новая запись' : 'Редактировать запись'
+  end
 end
