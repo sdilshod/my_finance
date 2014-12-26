@@ -23,7 +23,7 @@ class OperationsController < ApplicationController
 
   def update
     @operation = Operation.find params[:id]
-    if @operation.update params[:operation]
+    if @operation.update operation_params
       redirect_to operations_path
     else
       render edit_operation_path

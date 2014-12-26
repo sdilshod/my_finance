@@ -35,8 +35,8 @@
               %td= operation.date
               %td= operation.sum
               %td= operation.source
-              %td= operation.category_id
-              %td= operation.subcategory_id
+              %td= operation.category.name
+              %td= operation.subcategory.name
               %td= operation.comment
               %td= link_to 'Редактировать', edit_operation_path(operation)
               %td= link_to 'Удалить', operation_path(operation), method: :delete
