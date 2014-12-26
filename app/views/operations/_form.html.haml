@@ -2,22 +2,22 @@
   %div.object_form_header
     %h4= title_of_object_form(@operation)
   %div.object_form_content
-    =form_for(@operation, html: {role: 'form', class: 'form-horizontal'}) do |f|
+    = form_for(@operation, html: {role: 'form', class: 'form-horizontal'}) do |f|
       .form-group
         .col-sm-3
           = f.label 'Дата', class: 'control-label'
-        .col-sm-9
-          = f.date_field :date, class: 'form-control'
+        .col-sm-4
+          = f.text_field :date, class: 'form-control'
       .form-group
         .col-sm-3
           = f.label 'Сумма', class: 'control-label'
-        .col-sm-9
+        .col-sm-4
           = f.text_field :sum, class: 'form-control'
       .form-group
         .col-sm-3
           = f.label 'Источник', class: 'control-label'
-        .col-sm-9
-          = f.select :source, [['Наличка',1], ['Пл.карта',2]], class: 'form-control'
+        .col-sm-5
+          = f.select :source, Operation::SOURCES, class: 'form-control'
       .form-group
         .col-sm-3
           = f.label 'Категория', class: 'control-label'
@@ -36,3 +36,12 @@
       .form-group
         .col-sm-12.text-right
           = f.submit 'Сохранить', role: 'button', class: 'btn btn-default'
+
+:javascript
+  $(document).ready(function(){
+    var date_input = $('#operation_date').datepicker({format: 'dd-mm-yyyy'})
+      .on('changeDate', function(){
+        date_input.hide();
+      }).data('datepicker');
+    date_input.setValue(new Date());
+  });
