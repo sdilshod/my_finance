@@ -11,9 +11,9 @@ class OperationsController < ApplicationController
   def create
     @operation = Operation.new operation_params
     if @operation.save
-      redirect_to operations_path
+      redirect_to operations_path, notice: t(:flash_notice)
     else
-      render new_operation_path
+      render new_operation_path, alert: t(:flash_alert)
     end
   end
 
@@ -24,11 +24,10 @@ class OperationsController < ApplicationController
   def update
     @operation = Operation.find params[:id]
     if @operation.update operation_params
-      redirect_to operations_path
+      redirect_to operations_path, notice: t(:flash_notice)
     else
-      render edit_operation_path
+      render edit_operation_path, alert: t(:flash_alert)
     end
-
   end
 
   def destroy
@@ -36,7 +35,6 @@ class OperationsController < ApplicationController
     @operation.destroy
     redirect_to operations_path
   end
-
 
 private
 

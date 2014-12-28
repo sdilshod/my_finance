@@ -11,9 +11,9 @@ class SubcategoriesController < ApplicationController
   def create
     @subcategory = Subcategory.new subcategory_params
     if @subcategory.save
-      redirect_to subcategories_path
+      redirect_to subcategories_path, alert: t(:flash_notice)
     else
-      render new_subcategory_path
+      render new_subcategory_path, alert: t(:flash_alert)
     end
   end
 
@@ -24,11 +24,10 @@ class SubcategoriesController < ApplicationController
   def update
     @subcategory = Subcategory.find params[:id]
     if @subcategory.update subcategory_params
-      redirect_to subcategories_path
+      redirect_to subcategories_path, alert: t(:flash_notice)
     else
-      render edit_subcategory_path
+      render edit_subcategory_path, alert: t(:flash_alert)
     end
-
   end
 
   def destroy
