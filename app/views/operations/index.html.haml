@@ -30,9 +30,9 @@
           %th
           %th
         %tbody
-          - @operations.each do |operation|
+          - @operations.each_with_index do |operation, index|
             %tr
-              %td 1
+              %td= index.next
               %td= operation.date
               %td= operation.sum
               %td= operation.source

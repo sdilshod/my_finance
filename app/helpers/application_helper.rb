@@ -13,6 +13,21 @@ module ApplicationHelper
     nil
   end
 
+  def flash_errors(object)
+    return nil if object.errors.messages.blank?
+    concat(content_tag(:div, class: "alert #{bootstrap_class_for('alert-danger')} fade in") do
+      concat content_tag(:button, 'x', class: "close", data: { dismiss: 'alert' })
+      object.errors.messages.each do |field, messages|
+        concat content_tag(:p, "field:- #{field}")
+        concat(content_tag(:ul) do
+          messages.each {|e| concat content_tag(:li, e) }
+        end)
+       end
+    end)
+    nil
+  end
+
+
   def title_of_object_form(object)
     object.new_record? ? 'Новый запись' : 'Редактировать запись'
   end
