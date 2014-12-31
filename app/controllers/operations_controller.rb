@@ -6,6 +6,12 @@ class OperationsController < ApplicationController
 
   def new
     @operation = Operation.new
+    @categories = Category.get_select_data
+    if @categories.blank?
+      @subcategories = []
+    else
+      @subcategories = Subcategory.get_select_data(@categories[0][1])
+    end
   end
 
   def create
@@ -19,6 +25,12 @@ class OperationsController < ApplicationController
 
   def edit
     @operation = Operation.find params[:id]
+    @categories = Category.get_select_data
+    if @categories.blank?
+      @subcategories = []
+    else
+      @subcategories = Subcategory.get_select_data(@operation.category.id)
+    end
   end
 
   def update
@@ -34,6 +46,14 @@ class OperationsController < ApplicationController
     @operation = Operation.find params[:id]
     @operation.destroy
     redirect_to operations_path
+  end
+
+  #TODO sepatare controller for selects
+  def fill_subcategory
+    @select_data = Subcategory.get_select_data params[:category_id]
+    respond_to do |format|
+      format.json {render}
+    end
   end
 
 private

@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
-  resources :operations
+  resources :operations, except: :show do
+    collection do
+      get :fill_subcategory
+    end
+  end
 
   #TODO change(categories and subcategories) with sub-resources
   resources :categories
