@@ -21,4 +21,25 @@ class Operation < ActiveRecord::Base
   belongs_to :subcategory
 
   validates_presence_of :date, :sum, :source, :category_id
+
+  def self.get_by params
+    query_string = params[:date_begin].blank? ? '' : "date between '#{params[:date_begin].to_date.to_s}' and '#{params[:date_end].to_date.to_s}'"
+    unless params[:source].blank?
+      query_string << ' and ' unless query_string.blank?
+      query_string << "source = '#{params[:source]}'"
+    end
+    unless params[:category].blank?
+      query_string << ' and ' unless query_string.blank?
+      query_string << "category_id = #{params[:category]}"
+    end
+    unless params[:subcategory].blank?
+      query_string << ' and ' unless query_string.blank?
+      query_string << "subcategory_id = #{params[:subcategory]}"
+    end
+
+    return [] if query_string.blank?
+
+    where(query_string).order('date')
+  end
+
 end

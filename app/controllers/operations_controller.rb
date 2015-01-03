@@ -1,17 +1,16 @@
 class OperationsController < ApplicationController
 
   def index
-    @operations = Operation.order('date')
+    if params.key? :filter
+      @operations = Operation.get_by params[:filter]
+    else
+      @operations = Operation.order('date')
+    end
   end
 
   def new
     @operation = Operation.new
-    @categories = Category.get_select_data
-    if @categories.blank?
-      @subcategories = []
-    else
-      @subcategories = Subcategory.get_select_data(@categories[0][1])
-    end
+    build_variables
   end
 
   def create
@@ -25,12 +24,7 @@ class OperationsController < ApplicationController
 
   def edit
     @operation = Operation.find params[:id]
-    @categories = Category.get_select_data
-    if @categories.blank?
-      @subcategories = []
-    else
-      @subcategories = Subcategory.get_select_data(@operation.category.id)
-    end
+    build_variables
   end
 
   def update
@@ -56,6 +50,10 @@ class OperationsController < ApplicationController
     end
   end
 
+  def list_filter
+    build_variables
+  end
+
 private
 
   #TODO learn best practice with adding assocations
@@ -67,5 +65,14 @@ private
               :category_id,
               :subcategory_id,
               :comment)
+  end
+
+  def build_variables
+    @categories = Category.get_select_data
+    if @categories.blank?
+      @subcategories = []
+    else
+      @subcategories = Subcategory.get_select_data(@categories[0][1])
+    end
   end
 end
