@@ -1,0 +1,52 @@
+.container
+  .row
+    .col-md-7
+      .object_form
+        %div.object_form_header
+          %h4 Фильтрировать записи
+        %div.object_form_content
+          = form_tag operations_path, {role: 'form', class: 'form-horizontal', method: :get} do
+            .form-group
+              .col-sm-2
+                = label :filter, :date_begin, 'Дата с', class: 'control-label'
+              .col-sm-3
+                = text_field :filter, :date_begin, class: 'form-control'
+              .col-sm-2
+                = label :filter, :date_end, 'по', class: 'control-label'
+              .col-sm-3
+                = text_field :filter, :date_end, class: 'form-control'
+            .form-group
+              .col-sm-2
+                = label :filter, :source, 'Источник', class: 'control-label'
+              .col-sm-5
+                = select :filter, :source, [['', '']] + Operation::SOURCES, {}, class: 'form-control'
+            .form-group
+              .col-sm-2
+                = label :filter, :category, 'Категория', class: 'control-label'
+              .col-sm-5
+                = select :filter, :category, [['', '']] + @categories, {}, class: 'form-control'
+            .form-group
+              .col-sm-2
+                = label :filter, :subcategory, 'Субкатегории', class: 'control-label'
+              .col-sm-5
+                = select :filter, :subcategory, [['', '']] + @subcategories, {}, class: 'form-control'
+            .form-group
+              .col-sm-12.text-right
+                = submit_tag 'Выполнить', role: 'button', class: 'btn btn-default'
+
+      - #TODO refactory and move separate js file.
+      :javascript
+        $(document).ready(function(){
+          var date_input_begin = $('#filter_date_begin').datepicker({format: 'dd-mm-yyyy'})
+            .on('changeDate', function(){
+              date_input_begin.hide();
+            }).data('datepicker');
+          date_input_begin.setValue(new Date());
+
+          var date_input_end = $('#filter_date_end').datepicker({format: 'dd-mm-yyyy'})
+            .on('changeDate', function(){
+              date_input_end.hide();
+            }).data('datepicker');
+          date_input_end.setValue(new Date());
+
+        });

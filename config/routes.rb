@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :operations, except: :show do
     collection do
       get :fill_subcategory
+      get :list_filter
     end
   end
 
