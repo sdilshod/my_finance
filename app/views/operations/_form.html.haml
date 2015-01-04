@@ -19,17 +19,17 @@
         .col-sm-3
           = f.label 'Источник', class: 'control-label'
         .col-sm-5
-          = f.select :source, Operation::SOURCES, class: 'form-control'
+          = f.select :source, Operation::SOURCES, {}, class: 'form-control'
       .form-group
         .col-sm-3
           = f.label 'Категория', class: 'control-label'
-        .col-sm-9
-          = f.select :category_id, Category.get_select_data, class: 'form-control'
+        .col-sm-6
+          = f.select :category_id, @categories, {}, class: 'form-control'
       .form-group
         .col-sm-3
           = f.label 'Субкатегории', class: 'control-label'
-        .col-sm-9
-          = f.select :subcategory_id, Subcategory.get_select_data, class: 'form-control'
+        .col-sm-6
+          = f.select :subcategory_id, @subcategories, {}, class: 'form-control'
       .form-group
         .col-sm-3
           = f.label 'Комментарии', class: 'control-label'
