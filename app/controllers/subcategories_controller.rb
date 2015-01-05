@@ -1,7 +1,10 @@
 #TODO use inheretedResources
 class SubcategoriesController < ApplicationController
+
+  PER_PAGE = 20
+
   def index
-    @subcategories = Subcategory.order('name')
+    @subcategories = Subcategory.order('name').page(params[:page]).per PER_PAGE
   end
 
   def new

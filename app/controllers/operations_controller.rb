@@ -1,11 +1,14 @@
 class OperationsController < ApplicationController
 
+  PER_PAGE = 10
+
   def index
     if params.key? :filter
       @operations = Operation.get_by params[:filter]
     else
       @operations = Operation.order('date')
     end
+    @operations = @operations.page(params[:page]).per PER_PAGE
   end
 
   def new

@@ -8,6 +8,8 @@
       %a.btn.btn-default{role: 'button'} Фильтр
   .row
     .col-md-12
+      = paginate @subcategories
+    .col-md-12
       %table.table.table-bordered
         %thead
           %th №

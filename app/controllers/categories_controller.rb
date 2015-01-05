@@ -1,8 +1,10 @@
 #TODO use inheretedResources
 class CategoriesController < ApplicationController
 
+  PER_PAGE = 20
+
   def index
-    @categories = Category.order('name')
+    @categories = Category.order('name').page(params[:page]).per PER_PAGE
   end
 
   def new
