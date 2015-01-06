@@ -47,7 +47,7 @@ class OperationsController < ApplicationController
 
   #TODO sepatare controller for selects
   def fill_subcategory
-    @select_data = Subcategory.get_select_data params[:category_id]
+    @select_data = Subcategory.get_select_data params[:category_id], params.key?(:filter_action)
     respond_to do |format|
       format.json {render}
     end

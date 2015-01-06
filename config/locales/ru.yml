@@ -1,3 +1,7 @@
 ru:
   flash_notice: 'Запись произведено успешно'
   flash_alert: 'Ошибка при записи'
+
+  date:
+    formats:
+      default: "%d-%m-%Y"
