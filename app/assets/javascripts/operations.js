@@ -15,7 +15,7 @@ $(document).ready(function(){
 
   $(document).on('change', '#filter_category', function(){
     var current_category_value = this.value;
-    $.get('/operations/fill_subcategory.json', {category_id: current_category_value})
+    $.get('/operations/fill_subcategory.json', {category_id: current_category_value, filter_action: true})
       .done(function(data){
         $('#filter_subcategory').html('');
         $.each(data.subcategories, function(index, item){
