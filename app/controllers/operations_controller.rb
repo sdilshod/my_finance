@@ -9,6 +9,10 @@ class OperationsController < ApplicationController
     else
       @operations = Operation.order('date')
     end
+    @calculations = {
+                      incoming: @operations.where('sum > 0').sum(:sum).to_f,
+                      expense: @operations.where('sum < 0').sum(:sum).to_f
+                    }
     @operations = @operations.page(params[:page]).per PER_PAGE
   end
 
@@ -28,7 +32,7 @@ class OperationsController < ApplicationController
 
   def edit
     @operation = Operation.find params[:id]
-    build_variables
+    build_variables @operation.category_id
   end
 
   def update
@@ -71,12 +75,12 @@ private
               :comment)
   end
 
-  def build_variables
+  def build_variables category_id = nil
     @categories = Category.get_select_data
     if @categories.blank?
       @subcategories = []
     else
-      @subcategories = Subcategory.get_select_data(@categories[0][1])
+      @subcategories = Subcategory.get_select_data(category_id.blank? ? @categories[0][1] : category_id)
     end
   end
 end
