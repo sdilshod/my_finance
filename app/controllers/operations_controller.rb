@@ -3,8 +3,9 @@ class OperationsController < ApplicationController
   PER_PAGE = 10
 
   def index
+    @filter_string = ''
     if params.key? :filter
-      @operations = Operation.get_by params[:filter]
+      @operations, @filter_string = Operation.get_by params[:filter]
     else
       @operations = Operation.order('date')
     end

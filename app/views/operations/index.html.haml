@@ -3,22 +3,28 @@
     .col-md-6
       = flash_messages
   .row
-    .col-md-3
-      %a.btn.btn-default{role: 'button', href: "#{new_operation_path}"} Добавить
-      %a.btn.btn-default{role: 'button', href: "#{list_filter_operations_path}"} Фильтр
     .col-md-5
-      .col-md-4 Ост.на начало
-      .col-md-8
+      .col-md-2 Остатки
+      .col-md-10
         %p= "Пл.карта  ______"
         %p= "Наличка   ______"
-    .col-md-4
-      .col-md-4 Ост.на конец
-      .col-md-8
-        %p= "Пл.карта  ______"
-        %p= "Наличка   ______"
+    .col-md-5
+      .col-md-2 Обороты
+      .col-md-10
+        %p= "Приход  ______"
+        %p= "Расход   ______"
   .row
-    .col-md-12
+    .col-md-6
+      .row
+        .col-md-12
+          %a.btn.btn-default{role: 'button', href: "#{new_operation_path}"} Добавить
+          %a.btn.btn-default{role: 'button', href: "#{list_filter_operations_path}"} Фильтр
+      .row
+        .col-md-12
+          %span= @filter_string.blank? ? '' : "Отбор: #{@filter_string}"
+    .col-md-6.text-right
       = paginate @operations
+  .row
     .col-md-12
       %table.table.table-hover.table-bordered
         %thead
