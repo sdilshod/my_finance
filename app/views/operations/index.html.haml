@@ -3,22 +3,44 @@
     .col-md-6
       = flash_messages
   .row
-    .col-md-3
-      %a.btn.btn-default{role: 'button', href: "#{new_operation_path}"} Добавить
-      %a.btn.btn-default{role: 'button', href: "#{list_filter_operations_path}"} Фильтр
-    .col-md-5
-      .col-md-4 Ост.на начало
-      .col-md-8
-        %p= "Пл.карта  ______"
-        %p= "Наличка   ______"
-    .col-md-4
-      .col-md-4 Ост.на конец
-      .col-md-8
-        %p= "Пл.карта  ______"
-        %p= "Наличка   ______"
+    .col-md-8.currency_info
+      .col-md-5.balance
+        .row
+          .col-md-7
+            %p Остаток на пл.карта
+          .col-md-5
+            %p= "______"
+        .row
+          .col-md-7
+            %p Остаток наличных
+          .col-md-5
+            %p= "______"
+      .col-md-5.revs
+        .row
+          .col-md-4
+            %p Приход
+          .col-md-4.text-right
+            %p= number_to_currency @calculations[:incoming], unit: ''
+        .row
+          .col-md-4
+            %p Расход
+          .col-md-4.text-right
+            %p= number_to_currency @calculations[:expense], unit: ''
   .row
-    .col-md-12
+    .col-md-6
+      .row
+        .col-md-12
+          %p
+            %a.btn.btn-default{role: 'button', href: "#{new_operation_path}"} Добавить
+            %a.btn.btn-default{role: 'button', href: "#{list_filter_operations_path}"} Фильтр
+      .row
+        .col-md-12
+          %p
+            %span= @filter_string.blank? ? '' : "Отбор: #{@filter_string}"
+
+    .col-md-6.text-right
       = paginate @operations
+  .row
     .col-md-12
       %table.table.table-hover.table-bordered
         %thead

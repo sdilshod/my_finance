@@ -23,23 +23,35 @@ class Operation < ActiveRecord::Base
   validates_presence_of :date, :sum, :source, :category_id
 
   def self.get_by params
-    query_string = params[:date_begin].blank? ? '' : "date between '#{params[:date_begin].to_date.to_s}' and '#{params[:date_end].to_date.to_s}'"
+    filter_string = ''
+    if params[:date_begin].blank?
+      query_string =  ''
+    else
+      date_begin = params[:date_begin].to_date.to_s
+      date_end = params[:date_end].to_date.to_s
+      query_string = "date between '#{date_begin}' and '#{date_end}'"
+      filter_string = "Дата между '#{date_begin}' и '#{date_end}'"
+    end
+
     unless params[:source].blank?
       query_string << ' and ' unless query_string.blank?
       query_string << "source = '#{params[:source]}'"
+      filter_string << " источник=#{params[:source]}"
     end
     unless params[:category].blank?
       query_string << ' and ' unless query_string.blank?
       query_string << "category_id = #{params[:category]}"
+      filter_string << " Категория=#{Category.find(params[:category]).name}"
     end
     unless params[:subcategory].blank?
       query_string << ' and ' unless query_string.blank?
       query_string << "subcategory_id = #{params[:subcategory]}"
+      filter_string << " Субкатегория=#{Subcategory.find(params[:subcategory]).name}"
     end
 
-    return [] if query_string.blank?
+    return where("id = ?", nil), '' if query_string.blank?
 
-    where(query_string).order('date')
+    return where(query_string).order('date'), filter_string
   end
 
 end
