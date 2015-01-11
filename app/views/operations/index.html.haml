@@ -3,29 +3,31 @@
     .col-md-6
       = flash_messages
   .row
-    .col-md-8.currency_info
-      .col-md-5.balance
+    .col-md-8
+      .currency_info
         .row
-          .col-md-7
-            %p Остаток на пл.карта
-          .col-md-5
-            %p= "______"
-        .row
-          .col-md-7
-            %p Остаток наличных
-          .col-md-5
-            %p= "______"
-      .col-md-5.revs
-        .row
-          .col-md-4
-            %p Приход
-          .col-md-4.text-right
-            %p= number_to_currency @calculations[:incoming], unit: ''
-        .row
-          .col-md-4
-            %p Расход
-          .col-md-4.text-right
-            %p= number_to_currency @calculations[:expense], unit: ''
+          .col-md-5.balance
+            .row
+              .col-md-7
+                %p Остаток на пл.карта
+              .col-md-5
+                %p= "______"
+            .row
+              .col-md-7
+                %p Остаток наличных
+              .col-md-5
+                %p= "______"
+          .col-md-5.revs
+            .row
+              .col-md-4
+                %p Приход
+              .col-md-4.text-right
+                %p= number_to_currency @calculations[:incoming], unit: ''
+            .row
+              .col-md-4
+                %p Расход
+              .col-md-4.text-right
+                %p= number_to_currency @calculations[:expense], unit: ''
   .row
     .col-md-6
       .row

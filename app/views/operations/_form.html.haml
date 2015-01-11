@@ -9,7 +9,10 @@
         .col-sm-3
           = f.label 'Дата', class: 'control-label'
         .col-sm-4
-          = f.text_field :date, class: 'form-control'
+          - if @operation.new_record?
+            = f.text_field :date, value: l(Date.today), class: 'form-control'
+          - else
+            = f.text_field :date, value: l(@operation.date), class: 'form-control'
       .form-group
         .col-sm-3
           = f.label 'Сумма', class: 'control-label'
@@ -45,5 +48,4 @@
       .on('changeDate', function(){
         date_input.hide();
       }).data('datepicker');
-    date_input.setValue(new Date());
   });
