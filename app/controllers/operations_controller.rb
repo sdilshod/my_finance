@@ -26,7 +26,8 @@ class OperationsController < ApplicationController
     if @operation.save
       redirect_to operations_path, notice: t(:flash_notice)
     else
-      render new_operation_path, alert: t(:flash_alert)
+      build_variables
+      render :new
     end
   end
 
@@ -40,7 +41,8 @@ class OperationsController < ApplicationController
     if @operation.update operation_params
       redirect_to operations_path, notice: t(:flash_notice)
     else
-      render edit_operation_path, alert: t(:flash_alert)
+      build_variables @operation.category_id
+      render :edit
     end
   end
 

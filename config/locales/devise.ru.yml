@@ -1,0 +1,11 @@
+ru:
+  devise:
+    registrations:
+      signed_up: "Вы успешно зарегистрировались в системе."
+    sessions:
+      signed_in: "Вы вошли в систему."
+      signed_out: "Вы вышли из систмемы."
+      already_signed_out: "Вы вошли в систему."
+  errors:
+    messages:
+      not_found: "не найдено"

@@ -5,3 +5,8 @@ ru:
   date:
     formats:
       default: "%d-%m-%Y"
+
+  activerecord:
+    errors:
+      messages:
+        blank: "не может быть пустым"
