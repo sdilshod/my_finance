@@ -26,6 +26,7 @@ group :development, :test do
   gem 'faker'
   gem 'fuubar'
   gem 'spring'
+  gem 'capybara'
 end
 
 group :test do

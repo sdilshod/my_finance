@@ -1,6 +1,6 @@
 FactoryGirl.define do
 
-  factory :category do
+  factory :subcategory do
     name Faker::Name.name
   end
 
