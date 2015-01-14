@@ -10,3 +10,4 @@ ru:
     errors:
       messages:
         blank: "не может быть пустым"
+        record_invalid: 'Ошибка в записи'

@@ -4,9 +4,8 @@ RSpec.describe Category, :type => :model do
 
   describe 'scopes' do
 
-    before :all do
-      @cat_road = create(:category_road)
-      @cat_house = create(:category_house)
+    before :each do
+      create(:category)
     end
 
     it '.get_select_data' do

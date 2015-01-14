@@ -49,7 +49,8 @@ class Operation < ActiveRecord::Base
       filter_string << " Субкатегория=#{Subcategory.find(params[:subcategory]).name}"
     end
 
-    return where("id = ?", nil), '' if query_string.blank?
+    #return where("id = ?", nil), '' if query_string.blank?
+    return order('date'), '' if query_string.blank?
 
     return where(query_string).order('date'), filter_string
   end
