@@ -24,12 +24,12 @@ class Operation < ActiveRecord::Base
 
   def self.get_by params
     filter_string = ''
-    if params[:date_begin].blank?
+    if params[:date_begin].blank? || params[:date_end].blank?
       query_string =  ''
     else
-      date_begin = params[:date_begin].to_date.to_s
-      date_end = params[:date_end].to_date.to_s
-      query_string = "date between '#{date_begin}' and '#{date_end}'"
+      date_begin = params[:date_begin]
+      date_end = params[:date_end]
+      query_string = "date between '#{date_begin.to_date}' and '#{date_end.to_date}'"
       filter_string = "Дата между '#{date_begin}' и '#{date_end}'"
     end
 

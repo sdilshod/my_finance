@@ -10,11 +10,11 @@
               .col-sm-2
                 = label :filter, :date_begin, 'Дата с', class: 'control-label'
               .col-sm-3
-                = text_field :filter, :date_begin, class: 'form-control'
+                = text_field :filter, :date_begin, class: 'form-control', readonly: true
               .col-sm-2
                 = label :filter, :date_end, 'по', class: 'control-label'
               .col-sm-3
-                = text_field :filter, :date_end, class: 'form-control'
+                = text_field :filter, :date_end, class: 'form-control', readonly: true
             .form-group
               .col-sm-2
                 = label :filter, :source, 'Источник', class: 'control-label'
