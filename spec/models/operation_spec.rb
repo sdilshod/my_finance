@@ -8,7 +8,7 @@ RSpec.describe Operation, :type => :model do
       @categories = create_list(:category, 2)
       @subcategories = create_list(:subcategory, 2, category: @categories.first)
       create_list(:operation, 2,
-                  source: Operation::SOURCES[0][0],
+                  source: Operation::SOURCES[0][1],
                   category: @categories.first,
                   subcategory: @subcategories.first
                  )
@@ -24,7 +24,7 @@ RSpec.describe Operation, :type => :model do
       params = {
                  date_begin: 2.days.ago,
                  date_end: Date.today,
-                 source: Operation::SOURCES[0][0],
+                 source: Operation::SOURCES[0][1],
                  category: @categories[0].id.to_s,
                  subcategory: @subcategories[0].id.to_s
                }

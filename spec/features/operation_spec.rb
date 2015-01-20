@@ -7,7 +7,7 @@ describe 'Operations' do
     @subcategories = create_list(:subcategory, 2, category: @categories.first)
     create_list(:operation, 2,
                 sum: 5200,
-                source: Operation::SOURCES[0][0],
+                source: Operation::SOURCES[0][1],
                 category: @categories.first,
                 subcategory: @subcategories.first
                )
@@ -50,6 +50,7 @@ describe 'Operations' do
     it 'should create operation' do
       click_link 'Добавить'
       expect(current_path).to eq(new_operation_path)
+      expect(page.html).to include('<option value="1">Наличка</option>')
       within('form') do
         fill_in 'operation_sum', with: 15000
       end
@@ -63,6 +64,7 @@ describe 'Operations' do
     it 'should perform filter' do
       click_link 'Фильтр'
       expect(current_path).to eq(list_filter_operations_path)
+      expect(page.html).to include('<option value="1">Наличка</option>')
       within('form') do
         select  Operation::SOURCES[0][0], from: 'filter_source'
       end
