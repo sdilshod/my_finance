@@ -5,8 +5,9 @@ RSpec.describe Subcategory, :type => :model do
   describe 'scopes' do
 
     before :each do
-      @categories = create_list(:category, 2)
-      create_list(:subcategory, 2, category: @categories.first)
+      @user = create :user
+      @categories = create_list :category, 2, user: @user
+      create_list :subcategory, 2, category: @categories.first
     end
 
     describe '.get_select_data' do
