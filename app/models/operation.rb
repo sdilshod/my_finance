@@ -15,7 +15,7 @@
 
 class Operation < ActiveRecord::Base
 
-  SOURCES = [['Наличка', 'Наличка'], ['Пл.карта', 'Пл.карта']]
+  SOURCES = [['Наличка', 1], ['Пл.карта', 2]]
 
   belongs_to :category
   belongs_to :subcategory
@@ -35,7 +35,7 @@ class Operation < ActiveRecord::Base
 
     unless params[:source].blank?
       query_string << ' and ' unless query_string.blank?
-      query_string << "source = '#{params[:source]}'"
+      query_string << "source = #{params[:source]}"
       filter_string << " источник=#{params[:source]}"
     end
     unless params[:category].blank?
@@ -53,6 +53,13 @@ class Operation < ActiveRecord::Base
     return order('date'), '' if query_string.blank?
 
     return where(query_string).order('date'), filter_string
+  end
+
+  def source_name
+    result = SOURCES.select do |e|
+      e.second == self.source
+    end
+    result.first.first
   end
 
 end

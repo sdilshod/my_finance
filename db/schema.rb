@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150104170752) do
+ActiveRecord::Schema.define(version: 20150120170634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,12 +25,12 @@ ActiveRecord::Schema.define(version: 20150104170752) do
   create_table "operations", force: true do |t|
     t.date     "date",                                    null: false
     t.decimal  "sum",            precision: 15, scale: 2, null: false
-    t.string   "source",                                  null: false
     t.integer  "category_id",                             null: false
     t.integer  "subcategory_id"
     t.string   "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "source",                                  null: false
   end
 
   add_index "operations", ["date"], name: "index_operations_on_date", using: :btree
