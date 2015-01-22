@@ -5,9 +5,9 @@ class OperationsController < ApplicationController
   def index
     @filter_string = ''
     if params.key? :filter
-      @operations, @filter_string = Operation.get_by params[:filter]
+      @operations, @filter_string = Operation.get_by current_user.id, params[:filter]
     else
-      @operations = Operation.order('date')
+      @operations = current_user.operations.order('date')
     end
     @calculations = {
                       incoming: @operations.where('sum > 0').sum(:sum).to_f,
@@ -23,6 +23,7 @@ class OperationsController < ApplicationController
 
   def create
     @operation = Operation.new operation_params
+    @operation.user = current_user
     if @operation.save
       redirect_to operations_path, notice: t(:flash_notice)
     else
@@ -78,7 +79,7 @@ private
   end
 
   def build_variables category_id = nil
-    @categories = Category.get_select_data
+    @categories = Category.get_select_data current_user
     if @categories.blank?
       @subcategories = []
     else

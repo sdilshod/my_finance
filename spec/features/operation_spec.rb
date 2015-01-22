@@ -3,22 +3,24 @@ require 'rails_helper'
 describe 'Operations' do
 
   before :each do
-    @categories = create_list(:category, 2)
-    @subcategories = create_list(:subcategory, 2, category: @categories.first)
-    create_list(:operation, 2,
+    @user = create :user
+    @categories = create_list :category, 2, user: @user
+    @subcategories = create_list :subcategory, 2, category: @categories.first
+    create_list :operation, 2,
+                user: @user,
                 sum: 5200,
                 source: Operation::SOURCES[0][1],
                 category: @categories.first,
                 subcategory: @subcategories.first
-               )
-    create_list(:operation, 2,
+
+    create_list :operation, 2,
+                user: @user,
                 sum: -1200,
                 source: Operation::SOURCES[1][1],
                 category: @categories.first,
                 subcategory: @subcategories.first
-               )
 
-    @user = create(:user)
+
     visit '/users/sign_in'
     within('form') do
       fill_in 'user_email', with: @user.email

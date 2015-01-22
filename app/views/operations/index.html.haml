@@ -61,7 +61,7 @@
               %td.text-right= number_to_currency(operation.sum, unit: '')
               %td= operation.source_name
               %td= operation.category.name
-              %td= operation.subcategory.name
+              %td= operation.subcategory.name if operation.subcategory
               %td= operation.comment
               %td= link_to image_tag('edit-icon.png'), edit_operation_path(operation), title: 'Редактировать'
               %td= link_to image_tag('destroy-icon.png'), operation_path(operation), method: :delete, title: 'Удалить'

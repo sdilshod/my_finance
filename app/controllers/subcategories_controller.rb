@@ -4,7 +4,7 @@ class SubcategoriesController < ApplicationController
   PER_PAGE = 20
 
   def index
-    @subcategories = Subcategory.order('name').page(params[:page]).per PER_PAGE
+    @subcategories = current_user.subcategories.order('name').page(params[:page]).per PER_PAGE
   end
 
   def new

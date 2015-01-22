@@ -5,14 +5,17 @@ RSpec.describe Operation, :type => :model do
   describe '.get_by' do
 
     before :each do
-      @categories = create_list(:category, 2)
-      @subcategories = create_list(:subcategory, 2, category: @categories.first)
+      @user = create :user
+      @categories = create_list :category, 2, user: @user
+      @subcategories = create_list :subcategory, 2, category: @categories.first
       create_list(:operation, 2,
+                  user: @user,
                   source: Operation::SOURCES[0][1],
                   category: @categories.first,
                   subcategory: @subcategories.first
                  )
       create_list(:operation, 2,
+                  user: @user,
                   source: Operation::SOURCES[1][1],
                   category: @categories.first,
                   subcategory: @subcategories.second
@@ -29,13 +32,14 @@ RSpec.describe Operation, :type => :model do
                  subcategory: @subcategories[0].id.to_s
                }
 
-      collection, filter_string = Operation.get_by params
+      collection, filter_string = Operation.get_by @user.id, params
       expect(collection.size).to eq(2)
       expect(filter_string).not_to be_blank
     end
 
     it 'should return blank result' do
-      collection, filter_string = Operation.get_by date_begin: nil,
+      collection, filter_string = Operation.get_by @user.id,
+                                                   date_begin: nil,
                                                    date_end: nil,
                                                    source: nil,
                                                    category: nil,

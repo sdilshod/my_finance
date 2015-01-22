@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
   PER_PAGE = 20
 
   def index
-    @categories = Category.order('name').page(params[:page]).per PER_PAGE
+    @categories = current_user.categories.order('name').page(params[:page]).per PER_PAGE
   end
 
   def new
@@ -13,6 +13,7 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new category_params
+    @category.user = current_user
     if @category.save
       redirect_to categories_path, alert: t(:flash_notice)
     else

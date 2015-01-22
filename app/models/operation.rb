@@ -5,12 +5,13 @@
 #  id             :integer          not null, primary key
 #  date           :date             not null
 #  sum            :decimal(15, 2)   not null
-#  source         :string(255)      not null
 #  category_id    :integer          not null
 #  subcategory_id :integer
 #  comment        :string(255)
 #  created_at     :datetime
 #  updated_at     :datetime
+#  source         :integer          not null
+#  user_id        :integer          not null
 #
 
 class Operation < ActiveRecord::Base
@@ -19,10 +20,11 @@ class Operation < ActiveRecord::Base
 
   belongs_to :category
   belongs_to :subcategory
+  belongs_to :user
 
   validates_presence_of :date, :sum, :source, :category_id
 
-  def self.get_by params
+  def self.get_by user_id, params
     filter_string = ''
     if params[:date_begin].blank? || params[:date_end].blank?
       query_string =  ''
@@ -50,9 +52,9 @@ class Operation < ActiveRecord::Base
     end
 
     #return where("id = ?", nil), '' if query_string.blank?
-    return order('date'), '' if query_string.blank?
+    return where('user_id = ?', user_id).order('date desc'), '' if query_string.blank?
 
-    return where(query_string).order('date'), filter_string
+    return where("user_id = ? and #{query_string}", user_id).order('date desc'), filter_string
   end
 
   def source_name
