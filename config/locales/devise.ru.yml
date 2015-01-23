@@ -1,5 +1,10 @@
 ru:
   devise:
+    failure:
+      already_authenticated: "Вы уже вошли в систему."
+      invalid: "Не верно %{authentication_keys} или пароль."
+      not_found_in_database: "Не верно %{authentication_keys} или пароль."
+
     registrations:
       signed_up: "Вы успешно зарегистрировались в системе."
     sessions:
