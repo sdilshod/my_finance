@@ -1,28 +1,36 @@
 <!DOCTYPE html>
 %html
   %head
-    %title MyFinance
+    %title MYFINANCE - простой способ учета личных финансов
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
   %body
+    = nav_bar :static => :top, fluid: true, brand: image_tag('icon_myfin.png') do
+      - if user_signed_in?
+        = menu_group pull: :left do
+          = menu_item "Операции", operations_path
+          = menu_item "Категории", categories_path
+          = menu_item "Субкатегории", subcategories_path
+        = menu_group pull: :right do
+          = menu_item current_user.email
+          = menu_item "Выйти", destroy_user_session_path, method: :delete
+
+      - else
+        = menu_group :pull => :right do
+          = menu_item "Войти", new_user_session_path
+          = menu_item "Регистрация", new_user_registration_path
+
     .container-fluid
       .row
         .col-md-12
-          = nav_bar :static => :top do
-            - if user_signed_in?
-              = menu_group do
-                = menu_item "Операции", operations_path
-                = menu_item "Категории", categories_path
-                = menu_item "Субкатегории", subcategories_path
-              = menu_group pull: :right do
-                = menu_item "Выйти", destroy_user_session_path, method: :delete
+          = yield
 
-            - else
-              = menu_group :pull => :right do
-                = menu_item "Войти", new_user_session_path
-                - #menu_item "Регистрация", new_user_registration_path
-      .row
-        .col-md-12
-          = yield 
+    = nav_bar :fixed => :bottom, fluid: true do
+      .text-center
+        %div
+          %span{style: 'color: black'} ©2015
+          %span{style: 'color: blue'} Dilshod Samatov
+        %div
+          %span{style: 'font-size: 12px;'} email:- samatov.dilshod@gmail.com

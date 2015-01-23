@@ -7,7 +7,7 @@ class OperationsController < ApplicationController
     if params.key? :filter
       @operations, @filter_string = Operation.get_by current_user.id, params[:filter]
     else
-      @operations = current_user.operations.order('date')
+      @operations = current_user.operations.order('date desc')
     end
     @calculations = {
                       incoming: @operations.where('sum > 0').sum(:sum).to_f,
