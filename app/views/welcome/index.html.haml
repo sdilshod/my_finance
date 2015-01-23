@@ -12,4 +12,4 @@
       %p
         = 'Воспользуйтись <a href="users/sign_in?demo=true">Демо-аккаунтом</a> для ознакомление, вдруг понравиться.'.html_safe unless user_signed_in?
   .col-md-7
-    %img{src: 'assets/myfinance.png', style: 'overflow: hidden;'}
+    = image_tag('myfinance.png')
