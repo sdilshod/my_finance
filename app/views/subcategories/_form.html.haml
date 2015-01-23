@@ -9,7 +9,7 @@
         .col-sm-3
           = f.label 'Категория', class: 'control-label'
         .col-sm-9
-          = f.select :category_id, Category.get_select_data, class: 'form-control'
+          = f.select :category_id, Category.get_select_data(current_user), {}, class: 'form-control'
       .form-group
         .col-sm-3
           = f.label 'Наименование', class: 'control-label'
