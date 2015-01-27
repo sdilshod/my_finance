@@ -2,12 +2,18 @@ nav.navbar
   background-color: white
   .container-fluid
     .navbar-brand
-      padding: 0
+      img
+        display: inline-block!important
+      &:hover
+        color: green
     ul
       font-size: 16px
       li.active
         a
           background-color: white
-          border-bottom: 4px solid blue
+          border-bottom: 4px solid #CCC
           &:hover
             background-color: white
+
+nav.navbar.navbar-default.navbar-static-bottom
+  margin-top: 20px

@@ -2,12 +2,13 @@
 %html
   %head
     %title MYFINANCE - простой способ учета личных финансов
+    = favicon_link_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
   %body
-    = nav_bar :static => :top, fluid: true, brand: image_tag('icon_myfin.png') do
+    = nav_bar :static => :top, fluid: true, brand: image_tag('app_icon.png') + ' MyFinance' do
       - if user_signed_in?
         = menu_group pull: :left do
           = menu_item "Операции", operations_path
@@ -34,3 +35,19 @@
           %span{style: 'color: blue'} Dilshod Samatov
         %div
           %span{style: 'font-size: 12px;'} email:- samatov.dilshod@gmail.com
+
+    :javascript
+      //TODO if alert more than one, this get error
+      $(document).ready( function(){
+        alert_content = $('div.alert');
+        if(alert_content.length){
+           new PNotify({
+              title: 'Сообщение!',
+              text: alert_content.data('message'),
+              type: 'info',
+              animate_speed: 'fast',
+              delay: 6000,
+              icon: true
+          })
+        }
+      });

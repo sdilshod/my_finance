@@ -11,3 +11,9 @@ ru:
       messages:
         blank: "не может быть пустым"
         record_invalid: 'Ошибка в записи'
+    attributes:
+      user:
+        email: 'Почта'
+        password: 'Пароль'
+        remember_me: 'Запомни меня'
+        password_confirmation: 'Потверждение'
