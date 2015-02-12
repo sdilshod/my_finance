@@ -10,9 +10,9 @@
           = f.label 'Дата', class: 'control-label'
         .col-sm-4
           - if @operation.new_record?
-            = f.text_field :date, value: l(Date.today), class: 'form-control'
+            = f.text_field :date, value: l(Date.today), class: 'form-control', role: 'datepicker'
           - else
-            = f.text_field :date, value: l(@operation.date), class: 'form-control'
+            = f.text_field :date, value: l(@operation.date), class: 'form-control', role: 'datepicker'
       .form-group
         .col-sm-3
           = f.label 'Сумма', class: 'control-label'
@@ -27,12 +27,12 @@
         .col-sm-3
           = f.label 'Категория', class: 'control-label'
         .col-sm-6
-          = f.select :category_id, @categories, {}, class: 'form-control'
+          = f.select :category_id, @categories, {}, class: 'form-control', role: 'category'
       .form-group
         .col-sm-3
           = f.label 'Субкатегории', class: 'control-label'
         .col-sm-6
-          = f.select :subcategory_id, @subcategories, {}, class: 'form-control'
+          = f.select :subcategory_id, @subcategories, {}, class: 'form-control', role: 'subcategory'
       .form-group
         .col-sm-3
           = f.label 'Комментарии', class: 'control-label'
@@ -41,11 +41,3 @@
       .form-group
         .col-sm-12.text-right
           = f.submit 'Сохранить', role: 'button', class: 'btn btn-default'
-
-:javascript
-  $(document).ready(function(){
-    var date_input = $('#operation_date').datepicker({format: 'dd-mm-yyyy'})
-      .on('changeDate', function(){
-        date_input.hide();
-      }).data('datepicker');
-  });
