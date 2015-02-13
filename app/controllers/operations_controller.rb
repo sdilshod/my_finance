@@ -1,5 +1,7 @@
 class OperationsController < ApplicationController
 
+  respond_to :json, only: :fill_subcategory
+
   PER_PAGE = 10
 
   def index
@@ -56,9 +58,6 @@ class OperationsController < ApplicationController
   #TODO sepatare controller for selects
   def fill_subcategory
     @select_data = Subcategory.get_select_data params[:category_id], params.key?(:filter_action)
-    respond_to do |format|
-      format.json {render}
-    end
   end
 
   def list_filter
