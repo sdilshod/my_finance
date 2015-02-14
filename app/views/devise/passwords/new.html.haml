@@ -1,0 +1,24 @@
+.container
+  .row
+    .col-md-12
+      = flash_messages
+  .row
+    .col-md-5
+      .object_form
+        %div.object_form_header
+          %h4 Забыли ваш пароль ?
+        %div.object_form_content
+          = form_for(resource, as: resource_name,
+                              url: password_path(resource_name),
+                              html: { method: :post, role: 'form', class: 'form-horizontal'}) do |f|
+            = devise_error_messages!
+            .form-group
+              .col-sm-3
+                = f.label :email, class: 'control-label'
+              .col-sm-9
+                = f.email_field :email, autofocus: true, class: 'form-control'
+            .form-group
+              .col-sm-12.text-right
+                = f.submit 'Отправить мне инструкцию по восстановление пароля', role: 'button', class: 'btn btn-default'
+
+      = render 'devise/shared/links'
