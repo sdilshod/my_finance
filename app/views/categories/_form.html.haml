@@ -1,9 +1,9 @@
 = flash_messages
 = flash_errors(@category)
-.object_form
-  %div.object_form_header
+.object-form
+  %div.object-form-header
     %h4= title_of_object_form(@category)
-  %div.object_form_content
+  %div.object-form-content
     = form_for(@category, html: {role: 'form', class: 'form-horizontal'}) do |f|
       .form-group
         .col-sm-3

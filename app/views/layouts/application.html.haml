@@ -39,11 +39,11 @@
     :javascript
       //TODO if alert more than one, this get error
       $(document).ready( function(){
-        alert_content = $('div.alert');
-        if(alert_content.length){
+        alertContent = $('div.alert');
+        if(alertContent.length){
            new PNotify({
               title: 'Сообщение!',
-              text: alert_content.data('message'),
+              text: alertContent.data('message') ? alertContent.data('message') : 'Ошибка',
               type: 'info',
               animate_speed: 'fast',
               delay: 5000,

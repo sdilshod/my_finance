@@ -4,7 +4,7 @@
       = flash_messages
   .row
     .col-md-8
-      .currency_info
+      .currency-info
         .row
           .col-md-5.balance
             .row
@@ -49,19 +49,23 @@
           %th №
           %th Дата
           %th Сумма
-          %th Источник операции
-          %th Категория
-          %th Субкатегория
+          %th Расшифровка
           %th{colspan: '3'}Примечание
         %tbody
           - @operations.each_with_index do |operation, index|
             %tr
               %td= index.next
               %td= l(operation.date)
-              %td.text-right= number_to_currency(operation.sum, unit: '')
-              %td= operation.source_name
-              %td= operation.category.name
-              %td= operation.subcategory.name if operation.subcategory
+              %td.row-detail
+                %p.text-right= number_to_currency(operation.sum, unit: '')
+                %p
+                  %span источник:
+                  %span.subject= operation.source_name
+              %td.row-detail
+                %p= operation.subcategory.name if operation.subcategory
+                %p
+                  %span категория:
+                  %span.subject= operation.category.name
               %td= operation.comment
-              %td= link_to image_tag('edit-icon.png'), edit_operation_path(operation), title: 'Редактировать'
-              %td= link_to image_tag('destroy-icon.png'), operation_path(operation), method: :delete, title: 'Удалить'
+              %td.table-button= link_to image_tag('edit-icon.png'), edit_operation_path(operation), title: 'Редактировать'
+              %td.table-button= link_to image_tag('destroy-icon.png'), operation_path(operation), method: :delete, title: 'Удалить'
