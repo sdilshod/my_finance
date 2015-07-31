@@ -5,39 +5,55 @@
     %h4= title_of_object_form(@operation)
   %div.object-form-content
     = form_for(@operation, html: {role: 'form', class: 'form-horizontal'}) do |f|
-      .form-group
-        .col-sm-3
+      .row
+        .col-sm-4
           = f.label 'Дата', class: 'control-label'
+        .col-sm-8
+          .form-group
+
+            .input-group
+              - if @operation.new_record?
+                = f.text_field :date, value: l(Date.today), class: 'form-control', role: 'datepicker'
+              - else
+                = f.text_field :date, value: l(@operation.date), class: 'form-control', role: 'datepicker'
+      .row
         .col-sm-4
-          - if @operation.new_record?
-            = f.text_field :date, value: l(Date.today), class: 'form-control', role: 'datepicker'
-          - else
-            = f.text_field :date, value: l(@operation.date), class: 'form-control', role: 'datepicker'
-      .form-group
-        .col-sm-3
           = f.label 'Сумма', class: 'control-label'
+        .col-sm-6
+          .form-group
+            .input-group
+              = f.text_field :sum, class: 'form-control text-right', role: 'calculator-source-field'
+              .input-group-addon.padNone
+                = link_to image_tag('calc.png'), nil, role: 'open-calculator', class: 'addon-image'
+      .row
         .col-sm-4
-          = f.text_field :sum, class: 'form-control text-right'
-      .form-group
-        .col-sm-3
           = f.label 'Источник', class: 'control-label'
-        .col-sm-5
-          = f.select :source, Operation::SOURCES, {}, class: 'form-control'
-      .form-group
-        .col-sm-3
+        .col-sm-8
+          .form-group
+            .input-group
+              = f.select :source, Operation::SOURCES, {}, class: 'form-control'
+      .row
+        .col-sm-4
           = f.label 'Категория', class: 'control-label'
-        .col-sm-6
-          = f.select :category_id, @categories, {}, class: 'form-control', role: 'category'
-      .form-group
-        .col-sm-3
+        .col-sm-8
+          .form-group
+            .input-group
+              = f.select :category_id, @categories, {}, class: 'form-control', role: 'category'
+      .row
+        .col-sm-4
           = f.label 'Субкатегории', class: 'control-label'
-        .col-sm-6
-          = f.select :subcategory_id, @subcategories, {}, class: 'form-control', role: 'subcategory'
-      .form-group
-        .col-sm-3
+        .col-sm-8
+          .form-group
+            .input-group
+              = f.select :subcategory_id, @subcategories, {}, class: 'form-control', role: 'subcategory'
+      .row
+        .col-sm-4
           = f.label 'Комментарии', class: 'control-label'
-        .col-sm-9
-          = f.text_area :comment, class: 'form-control'
-      .form-group
-        .col-sm-12.text-right
-          = f.submit 'Сохранить', role: 'button', class: 'btn btn-default'
+        .col-sm-8
+          .form-group
+            .input-group
+              = f.text_area :comment, class: 'form-control', cols: '40'
+      .row
+        .col-sm-11
+          .form-group.text-right
+            = f.submit 'Сохранить', role: 'button', class: 'btn btn-default'
