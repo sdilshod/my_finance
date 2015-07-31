@@ -21,8 +21,13 @@
               - @subcategories.each_with_index do |subcategory, index|
                 %tr
                   %td= index.next
-                  %td= subcategory.name
-                  %td.col-md-1
+                  %td.row-detail
+                    %p= subcategory.name
+                    %p
+                      %span категория:
+                      %span.subject= subcategory.category.name
+
+                  %td.col-md-1.table-button
                     = link_to image_tag('edit-icon.png'), edit_subcategory_path(subcategory), title: 'Редактировать'
-                  %td.col-md-1
+                  %td.col-md-1.table-button
                     = link_to image_tag('destroy-icon.png'), subcategory_path(subcategory), method: :delete, title: 'Удалить'

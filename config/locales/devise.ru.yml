@@ -9,7 +9,7 @@ ru:
       signed_up: "Вы успешно зарегистрировались в системе."
     sessions:
       signed_in: "Вы вошли в систему."
-      signed_out: "Вы вышли из систмемы."
+      signed_out: "Вы вышли из системы."
       already_signed_out: "Вы вошли в систему."
   errors:
     messages:
