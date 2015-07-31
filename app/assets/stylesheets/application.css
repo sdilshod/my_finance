@@ -11,5 +11,6 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require textfield_calculator/stylesheets/text_field_calculator.sass
  *= require_self
  */
