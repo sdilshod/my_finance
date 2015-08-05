@@ -13,4 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require textfield_calculator/javascripts/text_field_calculator
 //= require_tree .

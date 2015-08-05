@@ -19,6 +19,8 @@ gem 'annotate', '~> 2.6.5'
 gem 'devise'
 gem 'kaminari'
 
+gem 'bower'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'factory_girl_rails', require: false
