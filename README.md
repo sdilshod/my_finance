@@ -7,17 +7,26 @@ Install
 ---
 
 `git clone git@github.com:sdilshod/my_finance.git `
+
 `cd ./my_finance`
+
 `bundle`
 
 In this app used npm package management and need to install it
 
 `sudo apt-get install npm`
+
 `npm install -g node`
+
 `npm install -g bower`
 
 Setup db and you may populate db with seeds
-`rake db:create` `rake db:migrate` `rake db:seed`
+
+`rake db:create` 
+
+`rake db:migrate` 
+
+`rake db:seed`
 
 Run local server with `rails s` and go to `localhost:3000`
 
