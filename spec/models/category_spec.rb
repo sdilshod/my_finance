@@ -9,9 +9,9 @@ RSpec.describe Category, :type => :model do
       create(:category, user: @user)
     end
 
-    it '.get_select_data' do
-      arr = Category.get_select_data @user
-      expect(arr[0].size).to eql(2)
+    it '.ordered_by_user' do
+      arr = Category.ordered_by_user @user
+      expect(arr.size).to eql(1)
     end
 
   end

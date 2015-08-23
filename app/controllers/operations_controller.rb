@@ -57,7 +57,7 @@ class OperationsController < ApplicationController
 
   #TODO sepatare controller for selects
   def fill_subcategory
-    @select_data = Subcategory.get_select_data params[:category_id], params.key?(:filter_action)
+    @select_data = Subcategory.ordered_by_category params[:category_id]
   end
 
   def list_filter
@@ -78,11 +78,11 @@ private
   end
 
   def build_variables category_id = nil
-    @categories = Category.get_select_data current_user
-    if @categories.blank?
+    @categories = Category.ordered_by_user current_user
+    if @categories.size == 0
       @subcategories = []
     else
-      @subcategories = Subcategory.get_select_data(category_id.blank? ? @categories[0][1] : category_id)
+      @subcategories = Subcategory.ordered_by_category(category_id.blank? ? @categories.first.id : category_id)
     end
   end
 end

@@ -9,23 +9,23 @@
           .col-md-5.balance
             .row
               .col-md-7
-                %p Остаток на пл.карта
+                %p= t('ui.operations.rest_of_plastic_card')
               .col-md-5
                 %p= "______"
             .row
               .col-md-7
-                %p Остаток наличных
+                %p= t('ui.operations.rest_of_crash')
               .col-md-5
                 %p= "______"
           .col-md-5.revs
             .row
               .col-md-4
-                %p Приход
+                %p= t('ui.operations.incoming')
               .col-md-4.text-right
                 %p= number_to_currency @calculations[:incoming], unit: ''
             .row
               .col-md-4
-                %p Расход
+                %p= t('ui.operations.outgoing')
               .col-md-4.text-right
                 %p= number_to_currency @calculations[:expense], unit: ''
   .row
@@ -33,12 +33,12 @@
       .row
         .col-md-12
           %p
-            %a.btn.btn-default{role: 'button', href: "#{new_operation_path}"} Добавить
-            %a.btn.btn-default{role: 'button', href: "#{list_filter_operations_path}"} Фильтр
+            %a.btn.btn-default{role: 'button', href: "#{new_operation_path}"}= t('common.ui.add_button')
+            %a.btn.btn-default{role: 'button', href: "#{list_filter_operations_path}"}= t('common.ui.filter_button')
       .row
         .col-md-12
           %p
-            %span= @filter_string.blank? ? '' : "Отбор: #{@filter_string}"
+            %span= @filter_string.blank? ? '' : "#{t('common.ui.filter_label_string')}: #{@filter_string}"
 
     .col-md-6.text-right
       = paginate @operations
@@ -47,10 +47,10 @@
       %table.table.table-hover.table-bordered
         %thead
           %th №
-          %th Дата
-          %th Сумма
-          %th Расшифровка
-          %th{colspan: '3'}Примечание
+          %th= t('ui.operations.table.column_date')
+          %th= t('ui.operations.table.column_sum')
+          %th= t('ui.operations.table.column_transcript')
+          %th{colspan: '3'}= t('ui.operations.table.column_note')
         %tbody
           - @operations.each_with_index do |operation, index|
             %tr
@@ -59,12 +59,12 @@
               %td.row-detail
                 %p.text-right= number_to_currency(operation.sum, unit: '')
                 %p
-                  %span источник:
+                  %span= "#{t('ui.operations.source_type')}:"
                   %span.subject= operation.source_name
               %td.row-detail
                 %p= operation.subcategory.name if operation.subcategory
                 %p
-                  %span категория:
+                  %span= "#{t('ui.operations.category_type')}:"
                   %span.subject= operation.category.name
               %td= operation.comment
               %td.table-button= link_to image_tag('edit-icon.png'), edit_operation_path(operation), title: 'Редактировать'

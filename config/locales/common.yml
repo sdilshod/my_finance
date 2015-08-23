@@ -1,0 +1,6 @@
+ru:
+  common:
+    ui:
+      add_button: 'Добавить'
+      filter_button: 'Фильтр'
+      filter_label_string: 'Отбор'

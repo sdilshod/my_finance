@@ -19,17 +19,17 @@
               .col-sm-2
                 = label :filter, :source, 'Источник', class: 'control-label'
               .col-sm-5
-                = select :filter, :source, [['', '']] + Operation::SOURCES, {}, class: 'form-control'
+                = select :filter, :source, Operation::SOURCES, {include_blank: true}, class: 'form-control'
             .form-group
               .col-sm-2
                 = label :filter, :category, 'Категория', class: 'control-label'
               .col-sm-5
-                = select :filter, :category, [['', '']] + @categories, {}, class: 'form-control', role: 'category', data: {filter: true}
+                = select :filter, :category, @categories, {include_blank: true}, class: 'form-control', role: 'category', data: {filter: true}
             .form-group
               .col-sm-2
                 = label :filter, :subcategory, 'Субкатегории', class: 'control-label'
               .col-sm-5
-                = select :filter, :subcategory, [['', '']] + @subcategories, {}, class: 'form-control', role: 'subcategory'
+                = select :filter, :subcategory, @subcategories, {include_blank: true}, class: 'form-control', role: 'subcategory'
             .form-group
               .col-sm-12.text-right
                 = submit_tag 'Выполнить', role: 'button', class: 'btn btn-default'

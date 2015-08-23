@@ -26,32 +26,35 @@ class Operation < ActiveRecord::Base
 
   def self.get_by user_id, params
     filter_string = ''
-    if params[:date_begin].blank? || params[:date_end].blank?
+    date_begin = params[:date_begin]
+    date_end = params[:date_end]
+
+    if date_begin.blank? || date_end.blank?
       query_string =  ''
     else
-      date_begin = params[:date_begin]
-      date_end = params[:date_end]
       query_string = "date between '#{date_begin.to_date}' and '#{date_end.to_date}'"
       filter_string = "Дата между '#{date_begin}' и '#{date_end}'"
     end
 
-    unless params[:source].blank?
-      query_string << ' and ' unless query_string.blank?
-      query_string << "source = #{params[:source]}"
-      filter_string << " источник=#{params[:source]}"
-    end
-    unless params[:category].blank?
-      query_string << ' and ' unless query_string.blank?
-      query_string << "category_id = #{params[:category]}"
-      filter_string << " Категория=#{Category.find(params[:category]).name}"
-    end
-    unless params[:subcategory].blank?
-      query_string << ' and ' unless query_string.blank?
-      query_string << "subcategory_id = #{params[:subcategory]}"
-      filter_string << " Субкатегория=#{Subcategory.find(params[:subcategory]).name}"
+    params_arr = %W{source category subcategory}
+
+    params_arr.each do |e|
+      unless params[e.to_sym].blank?
+        query_string << ' and ' unless query_string.blank?
+        case e.to_sym
+          when :source
+            query_string << "source = #{params[:source]}"
+            filter_string << " источник=#{params[:source]}"
+          when :category
+            query_string << "category_id = #{params[:category]}"
+            filter_string << " Категория=#{Category.find(params[:category]).name}"
+          when :subcategory
+            query_string << "subcategory_id = #{params[:subcategory]}"
+            filter_string << " Субкатегория=#{Subcategory.find(params[:subcategory]).name}"
+        end
+      end
     end
 
-    #return where("id = ?", nil), '' if query_string.blank?
     return where('user_id = ?', user_id).order('date desc'), '' if query_string.blank?
 
     return where("user_id = ? and #{query_string}", user_id).order('date desc'), filter_string
