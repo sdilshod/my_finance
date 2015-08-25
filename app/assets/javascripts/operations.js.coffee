@@ -3,22 +3,16 @@ class Operations
     @bindings()
 
   bindings: ->
-    @datePickerBind()
-    @filterDatePickerBind()
+    @datePickerBinding()
     @categorySelectBind()
 
-  datePickerBind: ->
-    @datePicker '[role=datepicker]'
-
-  filterDatePickerBind: ->
-    @datePicker '[role=datepicker-begin]'
-    @datePicker '[role=datepicker-end]'
-
-  datePicker: (selector) ->
-    el = $(selector).datepicker({format: 'dd-mm-yyyy'})
-      .on 'changeDate', ->
-        el.hide()
-      .data 'datepicker'
+  datePickerBinding: ->
+    arr = ['[role=datepicker]', '[role=datepicker-begin]', '[role=datepicker-end]']
+    $.each arr, (index, valueSelector) ->
+      el = $(valueSelector).datepicker({format: 'dd-mm-yyyy'})
+        .on 'changeDate', ->
+          el.hide()
+        .data 'datepicker'
 
   categorySelectBind: ->
     el = $('[role=category]')

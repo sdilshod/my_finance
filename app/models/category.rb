@@ -16,5 +16,5 @@ class Category < ActiveRecord::Base
 
   validates :name, presence: true
 
-  scope :get_select_data, ->(user) { user.categories.order(:name).collect {|e| [e.name, e.id]} }
+  scope :ordered_by_user, -> (user) { user.categories.order(:name) }
 end

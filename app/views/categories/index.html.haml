@@ -8,8 +8,7 @@
       .row
         .col-md-4
           %p
-            %a.btn.btn-default{role: 'button', href: "#{new_category_path}"} Добавить
-            %a.btn.btn-default{role: 'button'} Фильтр
+            %a.btn.btn-default{role: 'button', href: "#{new_category_path}"}= t('common.ui.add_button')
         .col-md-8.text-right
           = paginate @categories
       .row

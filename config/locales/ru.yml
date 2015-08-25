@@ -17,3 +17,16 @@ ru:
         password: 'Пароль'
         remember_me: 'Запомни меня'
         password_confirmation: 'Потверждение'
+  ui:
+    operations:
+      rest_of_plastic_card: 'Остаток на пл.карта'
+      rest_of_crash: 'Остаток наличных'
+      incoming: 'Приход'
+      outgoing: 'Расход'
+      table:
+        column_date: 'Дата'
+        column_sum: 'Сумма'
+        column_transcript: 'Расшифровка'
+        column_note: 'Примечание'
+      source_type: 'источник'
+      category_type: 'категория'

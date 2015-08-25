@@ -23,8 +23,8 @@
           .form-group
             .input-group
               = f.text_field :sum, class: 'form-control text-right', role: 'calculator-source-field'
-              .input-group-addon.padNone
-                = link_to image_tag('calc.png'), nil, role: 'open-calculator', class: 'addon-image'
+              .input-group-addon.pad-none
+                = link_to image_tag('calc.png'), nil, role: 'open-calculator', class: 'addon-image', title: 'Калькулятор'
       .row
         .col-sm-4
           = f.label 'Источник', class: 'control-label'
@@ -38,14 +38,14 @@
         .col-sm-8
           .form-group
             .input-group
-              = f.select :category_id, @categories, {}, class: 'form-control', role: 'category'
+              = f.select :category_id, options_for_select(@categories.map {|e| [e.name, e.id]}), {}, class: 'form-control', role: 'category'
       .row
         .col-sm-4
           = f.label 'Субкатегории', class: 'control-label'
         .col-sm-8
           .form-group
             .input-group
-              = f.select :subcategory_id, @subcategories, {}, class: 'form-control', role: 'subcategory'
+              = f.select :subcategory_id, options_for_select(@subcategories.map {|e| [e.name, e.id]}), {}, class: 'form-control', role: 'subcategory'
       .row
         .col-sm-4
           = f.label 'Комментарии', class: 'control-label'

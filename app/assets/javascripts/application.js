@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require textfield_calculator/javascripts/text_field_calculator
-//= require_tree .
+//= require libs/bootstrap-datepicker
+//= require libs/pnotify.custom.min
+//= require operations

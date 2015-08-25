@@ -10,16 +10,11 @@ RSpec.describe Subcategory, :type => :model do
       create_list :subcategory, 2, category: @categories.first
     end
 
-    describe '.get_select_data' do
+    describe '.ordered_by_category' do
       it 'should return subcategory of category' do
-        arr = Subcategory.get_select_data @categories.first.id
+        arr = Subcategory.ordered_by_category @categories.first.id
         expect(arr.size).to eql(2)
       end
-      it 'should return subcategory with blank item' do
-        arr = Subcategory.get_select_data @categories.first.id, true
-        expect(arr.size).to eql(3)
-      end
-
     end
   end
 

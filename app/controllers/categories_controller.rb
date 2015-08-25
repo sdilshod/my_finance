@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
   PER_PAGE = 20
 
   def index
-    @categories = current_user.categories.order('name').page(params[:page]).per PER_PAGE
+    @categories = Category.ordered_by_user(current_user).page(params[:page]).per PER_PAGE
   end
 
   def new

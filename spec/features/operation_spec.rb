@@ -32,7 +32,6 @@ describe 'Operations' do
 
   describe 'main page' do
     it 'should contain elements' do
-      expect(page).to have_selector '.currency_info'
       expect(page).to have_content "#{number_to_currency(10400, unit: '')}"
       expect(page).to have_content "#{number_to_currency(-2400, unit: '')}"
       expect(page).to have_selector '.btn-default'
