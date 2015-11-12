@@ -15,4 +15,5 @@
 //= require textfield_calculator/javascripts/text_field_calculator
 //= require libs/bootstrap-datepicker
 //= require libs/pnotify.custom.min
+//= require initialize/pnotify_config
 //= require operations
