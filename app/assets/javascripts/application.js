@@ -11,8 +11,7 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
-//= require twitter/bootstrap
+//= require bootstrap-sprockets
 //= require textfield_calculator/javascripts/text_field_calculator
 //= require libs/bootstrap-datepicker
 //= require libs/pnotify.custom.min
