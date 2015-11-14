@@ -8,6 +8,8 @@
     = csrf_meta_tags
 
   %body
+    %script
+      var dataLayer = [{ 'variable_of_data_layer' : 'value_of_data_layer' }];
     = render 'shared/ga'
     = nav_bar :static => :top, fluid: true, brand: image_tag('app_icon.png') + ' MyFinance' do
       - if user_signed_in?
