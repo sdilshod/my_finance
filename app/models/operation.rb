@@ -36,21 +36,21 @@ class Operation < ActiveRecord::Base
       filter_string = "Дата между '#{date_begin}' и '#{date_end}'"
     end
 
+    source_name = SOURCES.select{|e| e.second.to_s == params[:source]}.first.first if params[:source]
     params_arr = %W{source category subcategory}
-
     params_arr.each do |e|
       unless params[e.to_sym].blank?
         query_string << ' and ' unless query_string.blank?
         case e.to_sym
           when :source
             query_string << "source = #{params[:source]}"
-            filter_string << " источник=#{params[:source]}"
+            filter_string << " источник='#{source_name}'"
           when :category
             query_string << "category_id = #{params[:category]}"
-            filter_string << " Категория=#{Category.find(params[:category]).name}"
+            filter_string << " Категория='#{Category.find(params[:category]).name}'"
           when :subcategory
             query_string << "subcategory_id = #{params[:subcategory]}"
-            filter_string << " Субкатегория=#{Subcategory.find(params[:subcategory]).name}"
+            filter_string << " Субкатегория='#{Subcategory.find(params[:subcategory]).name}'"
         end
       end
     end
