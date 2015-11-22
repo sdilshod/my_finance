@@ -38,7 +38,8 @@
       .row
         .col-md-12
           %p
-            %span= @filter_string.blank? ? '' : "#{t('common.ui.filter_label_string')}: #{@filter_string}"
+            - unless @filter_string.blank?
+              = "#{t('common.ui.filter_label_string')}: #{colorize_filter_string(@filter_string)}".html_safe
 
     .col-md-6.text-right
       = paginate @operations
