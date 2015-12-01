@@ -8,6 +8,7 @@ class SubcategoriesController < ApplicationController
   end
 
   def new
+    @categories = Category.ordered_by_user(current_user)
     @subcategory = Subcategory.new
   end
 
@@ -22,6 +23,7 @@ class SubcategoriesController < ApplicationController
 
   def edit
     @subcategory = Subcategory.find params[:id]
+    @categories = Category.ordered_by_user(current_user)
   end
 
   def update

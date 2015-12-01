@@ -36,7 +36,9 @@ class Operation < ActiveRecord::Base
       filter_string = "Дата между '#{date_begin}' и '#{date_end}'"
     end
 
-    source_name = SOURCES.select{|e| e.second.to_s == params[:source]}.first.first if params[:source]
+    search_source_name = SOURCES.select{|e| e.second.to_s == params[:source]}.first if params[:source]
+    source_name = search_source_name.first if search_source_name
+
     params_arr = %W{source category subcategory}
     params_arr.each do |e|
       unless params[e.to_sym].blank?

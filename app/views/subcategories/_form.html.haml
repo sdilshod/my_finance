@@ -9,7 +9,7 @@
         .col-sm-3
           = f.label 'Категория', class: 'control-label'
         .col-sm-9
-          = f.select :category_id, Category.ordered_by_user(current_user), {}, class: 'form-control'
+          = f.select :category_id, options_for_select(@categories.map {|e| [e.name, e.id]}, @subcategory.category_id), {}, class: 'form-control'
       .form-group
         .col-sm-3
           = f.label 'Наименование', class: 'control-label'
