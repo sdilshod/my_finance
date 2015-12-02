@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   resources :categories
   resources :subcategories
 
+  match '/*path' => 'welcome#not_found', via: :get
+
 end
