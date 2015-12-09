@@ -12,8 +12,11 @@
 //
 //= require jquery
 //= require bootstrap-sprockets
+//= require date_ru.js
 //= require textfield_calculator/javascripts/text_field_calculator
 //= require libs/bootstrap-datepicker
 //= require libs/pnotify.custom.min
 //= require initialize/pnotify_config
+//= require helpers
 //= require operations
+//= require financical_period_selector
