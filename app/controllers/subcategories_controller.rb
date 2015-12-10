@@ -13,6 +13,7 @@ class SubcategoriesController < ApplicationController
   end
 
   def create
+    @categories = Category.ordered_by_user(current_user)
     @subcategory = Subcategory.new subcategory_params
     if @subcategory.save
       redirect_to subcategories_path, alert: t(:flash_notice)
@@ -27,6 +28,7 @@ class SubcategoriesController < ApplicationController
   end
 
   def update
+    @categories = Category.ordered_by_user(current_user)
     @subcategory = Subcategory.find params[:id]
     if @subcategory.update subcategory_params
       redirect_to subcategories_path, alert: t(:flash_notice)

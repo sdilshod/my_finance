@@ -13,7 +13,12 @@ class Subcategory < ActiveRecord::Base
 
   belongs_to :category
 
-  validates :name, presence: true
+  validates :name,
+            format: {
+                      with: /\A[a-zA-Zа-яА-я0-9\b\(\)]+\Z/,
+                      message: 'Поле должно содержать буквы русского, латинского алфавита, цифры и знак "(" и ")"'
+                    },
+            presence: true
 
   scope :ordered_by_category, -> (category_id) { where('category_id = ?', category_id).order(:name) }
 
