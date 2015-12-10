@@ -16,7 +16,7 @@ class Category < ActiveRecord::Base
 
   validates :name,
             format: {
-                      with: /\A[a-zA-Zа-яА-я0-9\b\(\)]+\Z/,
+                      with: /\A[a-zA-Zа-яА-я0-9\b \(\)]+\Z/,
                       message: 'Поле должно содержать буквы русского, латинского алфавита, цифры и знак "(" и ")"'
                     },
             presence: true

@@ -33,7 +33,7 @@ class SubcategoriesController < ApplicationController
     if @subcategory.update subcategory_params
       redirect_to subcategories_path, alert: t(:flash_notice)
     else
-      render edit_subcategory_path, alert: t(:flash_alert)
+      render edit_subcategory_path(@subcategory), alert: t(:flash_alert)
     end
   end
 

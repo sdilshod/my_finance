@@ -30,7 +30,7 @@ class CategoriesController < ApplicationController
     if @category.update category_params
       redirect_to categories_path, alert: t(:flash_notice)
     else
-      render edit_category_path, alert: t(:flash_alert)
+      render edit_category_path(@category), alert: t(:flash_alert)
     end
   end
 
