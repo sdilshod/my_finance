@@ -28,6 +28,7 @@ group :development, :test do
   gem 'fuubar'
   gem 'spring'
   gem 'capybara'
+  gem 'byebug'
 end
 
 group :test do

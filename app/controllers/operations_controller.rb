@@ -11,10 +11,7 @@ class OperationsController < ApplicationController
     else
       @operations = current_user.operations.order('date desc')
     end
-    @calculations = {
-                      incoming: @operations.where('sum > 0').sum(:sum).to_f,
-                      expense: @operations.where('sum < 0').sum(:sum).to_f
-                    }
+    @calculations = build_calculation_hash
     @operations = @operations.page(params[:page]).per PER_PAGE
   end
 
@@ -85,4 +82,21 @@ private
       @subcategories = Subcategory.ordered_by_category(category_id.blank? ? @categories.first.id : category_id)
     end
   end
+
+  def build_calculation_hash
+    incoming_cash_sum = @operations.where('sum > 0 and source = 1').sum(:sum).to_f
+    incoming_plastic_sum = @operations.where('sum > 0 and source = 2').sum(:sum).to_f
+
+    expense_cash_sum = @operations.where('sum < 0 and source = 1').sum(:sum).to_f
+    expense_plastic_sum = @operations.where('sum < 0 and source = 2').sum(:sum).to_f
+
+    h = {
+          incoming: incoming_cash_sum + incoming_plastic_sum,
+          expense: expense_cash_sum + expense_plastic_sum,
+          incoming_details: { cash:  incoming_cash_sum, card: incoming_plastic_sum },
+          expense_details: { cash:  expense_cash_sum, card: expense_plastic_sum}
+        }
+    return h
+  end
+
 end
