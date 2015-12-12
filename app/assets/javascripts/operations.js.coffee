@@ -28,3 +28,5 @@ class Operations
 
 $(document).ready ->
   new Operations()
+
+  $('[data-toggle="tooltip"]').tooltip()

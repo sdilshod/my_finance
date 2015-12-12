@@ -14,7 +14,12 @@ class Category < ActiveRecord::Base
   has_many :subcategories, dependent: :destroy
   belongs_to :user
 
-  validates :name, presence: true
+  validates :name,
+            format: {
+                      with: /\A[a-zA-Zа-яА-я0-9\b \(\)]+\Z/,
+                      message: 'Поле должно содержать буквы русского, латинского алфавита, цифры и знак "(" и ")"'
+                    },
+            presence: true
 
   scope :ordered_by_user, -> (user) { user.categories.order(:name) }
 end

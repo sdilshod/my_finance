@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery_ujs
 //= require bootstrap-sprockets
 //= require date_ru.js
 //= require textfield_calculator/javascripts/text_field_calculator

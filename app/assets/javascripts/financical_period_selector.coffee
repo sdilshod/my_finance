@@ -99,12 +99,8 @@ class FinancicalPeriodSelectorView
           <input type='radio' name='period_type' id='period_#{key}_radio' data-perioddate='#{@dateBegin}' data-keyname='#{key}' #{@setDefaultValueToRadioInput(key)}/>
           <label for='period_#{key}_radio'> #{val} </label>
           <input type='text' id='period_#{key}_text' value='#{@getPeriodText(key, @dateBegin)}' #{@setReadOnlyForDayInput(key)}/>
-          <button type='button' id='#{key}_down' data-keyname='#{key}' title='Уменьшить'>
-            <img src='#{image_path('arrow_down.gif')}' />
-          </button>
-          <button type='button' id='#{key}_up' data-keyname='#{key}' title='Увеличить'>
-            <img src='#{image_path('arrow_up.gif')}' />
-          </button>
+          <button type='button' id='#{key}_down' data-keyname='#{key}' title='Уменьшить' class='btn-down'>↓</button>
+          <button type='button' id='#{key}_up' data-keyname='#{key}' title='Увеличить' class='btn-up'>↑</button>
         </li>
       """
     str

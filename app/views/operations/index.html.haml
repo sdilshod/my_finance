@@ -22,12 +22,18 @@
               .col-md-4
                 %p= t('ui.operations.incoming')
               .col-md-4.text-right
-                %p= number_to_currency @calculations[:incoming], unit: ''
+                %p{ 'data-toggle' => "tooltip",
+                    'data-placement' => "bottom",
+                    'title' => total_currence_details(@calculations[:incoming_details])}
+                  = number_to_currency @calculations[:incoming], unit: ''
             .row
               .col-md-4
                 %p= t('ui.operations.outgoing')
               .col-md-4.text-right
-                %p= number_to_currency @calculations[:expense], unit: ''
+                %p{ 'data-toggle' => "tooltip",
+                    'data-placement' => 'bottom',
+                    'title' => total_currence_details(@calculations[:expense_details])}
+                  = number_to_currency @calculations[:expense], unit: ''
   .row
     .col-md-6
       .row
