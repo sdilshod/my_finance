@@ -1,0 +1,18 @@
+.col-md-12
+  .row
+    .col-md-5
+      %h4 Количество записи в таблицах базы данных
+  .row
+    .col-md-5
+      %table.table.table-hover.table-bordered
+        %thead
+          %th Имя таблицы
+          %th Кол-во записи
+        %tbody
+          %tr
+            %td Всего
+            %td= @total_count_of_rows
+          - @db_tables_info.each do |e|
+            %tr
+              %td= e['table_name']
+              %td= e['count']

@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
+  match '/db_tables_information' => 'welcome#db_tables_information', via: :get, as: :db_tables_info
+
   resources :operations, except: :show do
     collection do
       get :fill_subcategory
