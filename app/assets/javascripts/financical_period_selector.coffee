@@ -156,8 +156,8 @@ class FinancicalPeriodSelectorView
   getQuarterNumberFromDate: (date) =>
     currentMonth = date.getMonth() + 1
     for m in [currentMonth..12]
-      if currentMonth % 3 == 0
-        currentQuarter = currentMonth / 3
+      if m % 3 == 0
+        currentQuarter = m / 3
         break
     currentQuarter
 
