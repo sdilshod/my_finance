@@ -2,7 +2,7 @@ class OperationsController < ApplicationController
 
   respond_to :json, only: :fill_subcategory
 
-  PER_PAGE = 10
+  PER_PAGE = 24
 
   def index
     @filter_string = ''
