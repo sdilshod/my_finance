@@ -93,7 +93,7 @@ private
     h = {
           incoming: incoming_cash_sum + incoming_plastic_sum,
           expense: expense_cash_sum + expense_plastic_sum,
-          difference: (incoming_cash_sum + incoming_plastic_sum) - (expense_cash_sum + expense_plastic_sum),
+          difference: (incoming_cash_sum + incoming_plastic_sum) - (expense_cash_sum + expense_plastic_sum)*-1,
           incoming_details: { cash:  incoming_cash_sum, card: incoming_plastic_sum },
           expense_details: { cash:  expense_cash_sum, card: expense_plastic_sum}
         }
