@@ -23,6 +23,7 @@ ru:
       rest_of_crash: 'Остаток наличных'
       incoming: 'Приход'
       outgoing: 'Расход'
+      difference: 'Разница'
       table:
         column_date: 'Дата'
         column_sum: 'Сумма'

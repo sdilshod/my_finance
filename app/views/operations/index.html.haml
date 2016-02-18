@@ -34,6 +34,12 @@
                     'data-placement' => 'bottom',
                     'title' => total_currence_details(@calculations[:expense_details])}
                   = number_to_currency @calculations[:expense], unit: ''
+            .row
+              .col-md-4
+                %p= t('ui.operations.difference')
+              .col-md-4.text-right
+                %p= number_to_currency @calculations[:difference], unit: ''
+
   .row
     .col-md-6
       .row
