@@ -24,6 +24,17 @@ class Operation < ActiveRecord::Base
 
   validates_presence_of :date, :sum, :source, :category_id
 
+  scope :finance_report, -> {
+    self.includes(:category, :subcategory).
+          group(:category_id, :subcategory_id).
+          select("category_id, subcategory_id, sum(sum) as sum").
+          where('sum < 0')
+  }
+
+  scope :by_user, lambda {|user_id|
+    where('user_id = ?', user_id)
+  }
+
   def self.get_by user_id, params
     filter_string = ''
     date_begin = params[:date_begin]

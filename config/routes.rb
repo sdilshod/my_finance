@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   resources :categories
   resources :subcategories
 
+  resources :finance_reports, only: :index
+
   match '/*path' => 'welcome#not_found', via: :get
 
 end

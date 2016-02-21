@@ -1,0 +1,25 @@
+-#TODO needs to improve usability of report
+.col-md-10
+  .row
+    .col-md-12
+      %table.table.table-hover.table-bordered
+        %thead
+          %th Показатели
+          %th Сумма
+        %tbody
+          %tr
+            %td
+              %bВСЕГО
+            %td.row-detail
+              %p.text-right
+                %b= @operations.map(&:sum).inject(:+)
+          - @operations_by_category.each do |category_operation|
+            %tr.gray-background-color
+              %td= category_operation[:category_name]
+              %td.row-detail
+                %p.text-right= number_to_currency(category_operation[:sum], unit: '')
+            - @operations.select{|e| e.category_id == category_operation[:category_id] }.each_with_index do |operation, index|
+              %tr
+                %td.padding-left5px= operation.subcategory.name
+                %td.row-detail
+                  %p.text-right= number_to_currency(operation.sum, unit: '')
