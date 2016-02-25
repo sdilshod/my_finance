@@ -1,0 +1,45 @@
+-#TODO needs to improve usability of report
+.col-md-10
+  .row
+    .col-md-10
+      .object-form
+        %div.object-form-content
+          = form_tag finance_reports_path, {role: 'form', class: 'form-horizontal', method: :get} do
+            .form-group
+              .col-sm-2
+                = label :filter, :date_begin, 'Период с', class: 'control-label'
+              .col-sm-3
+                = text_field :filter, :date_begin, class: 'form-control', readonly: true, role: 'datepicker-begin', value: l(Date.today)
+              .col-sm-1
+                = label :filter, :date_end, 'по', class: 'control-label'
+              .col-sm-3
+                = text_field :filter, :date_end, class: 'form-control', readonly: true, role: 'datepicker-end', value: l(Date.today)
+              .col-sm-1
+                = button_tag '...', type: 'button', role: 'open-financical-period-selector', title: 'Выбор периода'
+              .col-sm-2
+                = submit_tag 'Сформировать'
+  %br
+  .row
+    .col-md-12
+      %table.table.table-hover.table-bordered
+        %thead
+          %th Показатели
+          %th Сумма
+        %tbody
+          %tr
+            %td
+              %bВСЕГО
+            %td.row-detail
+              %p.text-right
+                %b= @operations.map(&:sum).inject(:+) if @operations
+          - if @operations_by_category
+            - @operations_by_category.each do |category_operation|
+              %tr.gray-background-color
+                %td= category_operation[:category_name]
+                %td.row-detail
+                  %p.text-right= number_to_currency(category_operation[:sum], unit: '')
+              - @operations.select{|e| e.category_id == category_operation[:category_id] }.each_with_index do |operation, index|
+                %tr
+                  %td.padding-left5px= operation.subcategory.name
+                  %td.row-detail
+                    %p.text-right= number_to_currency(operation.sum, unit: '')

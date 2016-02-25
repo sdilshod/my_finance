@@ -18,6 +18,7 @@
           = menu_item "Операции", operations_path
           = menu_item "Категории", categories_path
           = menu_item "Субкатегории", subcategories_path
+          = menu_item 'Свод по расходам', finance_reports_path
           = menu_item "Информация о таблиц БД", db_tables_info_path if admin_user?
         = menu_group pull: :right do
           = menu_item current_user.email
