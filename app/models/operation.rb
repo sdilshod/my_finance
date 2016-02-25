@@ -40,10 +40,13 @@ class Operation < ActiveRecord::Base
     date_begin = params[:date_begin]
     date_end = params[:date_end]
 
+    query_conditions = { text: 'user_id = :user_id', params: { user_id: user_id } }
+
     if date_begin.blank? || date_end.blank?
-      query_string =  ''
     else
-      query_string = "date between '#{date_begin.to_date}' and '#{date_end.to_date}'"
+      query_conditions[:text] << ' and date between :date_begin and :date_end'
+      query_conditions[:params][:date_begin] = date_begin.to_date
+      query_conditions[:params][:date_end] = date_end.to_date
       filter_string = "Дата между '#{date_begin}' и '#{date_end}'"
     end
 
@@ -53,24 +56,24 @@ class Operation < ActiveRecord::Base
     params_arr = %W{source category subcategory}
     params_arr.each do |e|
       unless params[e.to_sym].blank?
-        query_string << ' and ' unless query_string.blank?
         case e.to_sym
           when :source
-            query_string << "source = #{params[:source]}"
+            query_conditions[:text] << ' and source = :source '
+            query_conditions[:params][:source] = params[:source]
             filter_string << " источник='#{source_name}'"
           when :category
-            query_string << "category_id = #{params[:category]}"
+            query_conditions[:text] << ' and category_id = :category_id '
+            query_conditions[:params][:category_id] = params[:category_id]
             filter_string << " Категория='#{Category.find(params[:category]).name}'"
           when :subcategory
-            query_string << "subcategory_id = #{params[:subcategory]}"
+            query_conditions[:text] << ' and subcategory_id = :subcategory_id '
+            query_conditions[:params][:subcategory_id] = params[:subcategory_id]
             filter_string << " Субкатегория='#{Subcategory.find(params[:subcategory]).name}'"
         end
       end
     end
 
-    return where('user_id = ?', user_id).order('date desc'), '' if query_string.blank?
-
-    return where("user_id = ? and #{query_string}", user_id).order('date desc'), filter_string
+    return where([query_conditions[:text], query_conditions[:params]]).order('date desc'), filter_string
   end
 
   def source_name
