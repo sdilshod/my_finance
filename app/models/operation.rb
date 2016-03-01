@@ -63,11 +63,11 @@ class Operation < ActiveRecord::Base
             filter_string << " источник='#{source_name}'"
           when :category
             query_conditions[:text] << ' and category_id = :category_id '
-            query_conditions[:params][:category_id] = params[:category_id]
+            query_conditions[:params][:category_id] = params[:category]
             filter_string << " Категория='#{Category.find(params[:category]).name}'"
           when :subcategory
             query_conditions[:text] << ' and subcategory_id = :subcategory_id '
-            query_conditions[:params][:subcategory_id] = params[:subcategory_id]
+            query_conditions[:params][:subcategory_id] = params[:subcategory]
             filter_string << " Субкатегория='#{Subcategory.find(params[:subcategory]).name}'"
         end
       end
